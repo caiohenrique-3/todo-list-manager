@@ -14,7 +14,11 @@ public class UserInterface {
         printMenu();
 
         while (!quit){
-            getUserInput();
+            String userInput = getUserInput();
+            switch (userInput){
+                case "--quit":
+                    quit = true;
+            }
         }
     }
 
