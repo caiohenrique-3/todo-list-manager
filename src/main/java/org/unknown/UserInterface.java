@@ -18,6 +18,10 @@ public class UserInterface {
             switch (userInput){
                 case "--quit":
                     quit = true;
+
+                case "--clear":
+                    clearConsole();
+                    printMenu();
             }
         }
     }
@@ -32,6 +36,7 @@ public class UserInterface {
         System.out.println("| --delete [id]: Delete a todo item                  |");
         System.out.println("| --help: List all the available options             |");
         System.out.println("| --version: Print the version of the application    |");
+        System.out.println("| --clear: Clears the console                        |");
         System.out.println("| --quit: Closes the application                     |");
         System.out.println("|                                                    |");
         System.out.println("+----------------------------------------------------+");
@@ -39,5 +44,9 @@ public class UserInterface {
     }
     public String getUserInput() {
         return scanner.nextLine();
+    }
+
+    public void clearConsole(){
+        System.out.print("\033\143");
     }
 }
