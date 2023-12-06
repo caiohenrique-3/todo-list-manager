@@ -38,4 +38,33 @@ public class TaskManager {
             System.out.println("-------------------------------------\n");
         }
     }
+
+    public void showPending(){
+        int totalTasks = 0;
+        for (Task task : tasks) {
+           if (task.completionStatus == CompletionStatus.IN_PROGRESS
+                   || task.completionStatus == CompletionStatus.NOT_COMPLETED){
+              totalTasks++;
+           }
+        }
+
+        System.out.println("\n+------------------------------------------+");
+        System.out.println("|                                          |");
+        System.out.println("|  \uD83D\uDCDA Total number of pending tasks: " + totalTasks
+                + "     |");
+        System.out.println("|                                          |");
+        System.out.println("+------------------------------------------+\n");
+
+        for (Task task : tasks) {
+            if (task.completionStatus == CompletionStatus.IN_PROGRESS
+                    || task.completionStatus == CompletionStatus.NOT_COMPLETED) {
+            System.out.println("\uD83D\uDCD1 ID: " + task.taskID);
+            System.out.println("\uD83D\uDCDD Name: " + task.taskName);
+            System.out.println("\uD83D\uDCDA Description: " + task.description);
+            System.out.println("\u23F0 Deadline: " + task.deadline);
+            System.out.println("\uD83D\uDD22 Status: " + task.completionStatus);
+            System.out.println("-------------------------------------\n");
+            }
+        }
+    }
 }

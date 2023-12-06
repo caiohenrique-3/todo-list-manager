@@ -67,6 +67,10 @@ public class CommandProcessor {
         taskManager.showAll();
     }
 
+    private void printPendingTasks(){
+        taskManager.showPending();
+    }
+
     public void processCommands(){
         boolean quit = false;
         while (!quit){
@@ -89,8 +93,14 @@ public class CommandProcessor {
                    break;
 
                 case "--list":
+                case "--list all":
                 case "--l":
+                case "--l all":
                     printAllTasks();
+                    break;
+                case "--list pending":
+                case "--l pending":
+                    printPendingTasks();
                     break;
             }
         }
