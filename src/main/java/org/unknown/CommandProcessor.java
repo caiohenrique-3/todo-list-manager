@@ -46,8 +46,16 @@ public class CommandProcessor {
         System.out.print("⏰ Deadline: ");
         String deadline = getUserInput();
 
-        System.out.println("[(1) In progress 🔄 | (2) Not completed ❌] 🔢 Choose a number: ");
-        int completionStatus = getUserInt();
+        System.out.println("🤓 (1) In progress | (2) Not completed: ");
+        int completionStatusChoice = getUserInt();
+
+        CompletionStatus completionStatus;
+
+        if (completionStatusChoice == 1){
+            completionStatus = CompletionStatus.IN_PROGRESS;
+        } else {
+            completionStatus = CompletionStatus.NOT_COMPLETED;
+        }
 
         Task newTask = new Task(taskName, description, deadline, completionStatus);
         taskManager.addTask(newTask);
