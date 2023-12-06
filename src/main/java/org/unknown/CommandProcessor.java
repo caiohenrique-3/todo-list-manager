@@ -22,11 +22,42 @@ public class CommandProcessor {
         return scanner.nextLine();
     }
 
+    private int getUserInt(){
+        return scanner.nextInt();
+    }
+
     private void clearConsole(){
         System.out.print("\033\143");
         UserInterface ui = new UserInterface();
         ui.drawUI();
         ui = null;
+    }
+
+    private void addNewTask(){
+        System.out.println("Name:");
+        String taskName = getUserInput();
+
+        System.out.println("Description:");
+        String description = getUserInput();
+
+
+        System.out.println("Deadline:");
+        String deadline = getUserInput();
+
+        System.out.println("Choose a number:" +
+                "(1) In progress | (2) Not completed");
+
+        int completionStatus = getUserInt();
+
+        Task newTask = new Task(taskName, description,
+                deadline, completionStatus);
+        taskManager.addTask(newTask);
+
+        System.out.println("New task successfully created!");
+    }
+
+    private void printAllTasks(){
+        taskManager.showAll();
     }
 
     public void processCommands(){
@@ -37,9 +68,19 @@ public class CommandProcessor {
             switch (userInput){
                 case "--quit":
                     quit = true;
+                    break;
 
                 case "--clear":
                     clearConsole();
+                    break;
+
+                case "--new":
+                   addNewTask();
+                   break;
+
+                case "--list":
+                    printAllTasks();
+                    break;
             }
         }
     }
