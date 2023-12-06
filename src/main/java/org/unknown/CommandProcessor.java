@@ -74,18 +74,22 @@ public class CommandProcessor {
 
             switch (userInput){
                 case "--quit":
+                case "--q":
                     quit = true;
                     break;
 
                 case "--clear":
+                case "--c":
                     clearConsole();
                     break;
 
                 case "--new":
+                case "--n":
                    addNewTask();
                    break;
 
                 case "--list":
+                case "--l":
                     printAllTasks();
                     break;
             }
