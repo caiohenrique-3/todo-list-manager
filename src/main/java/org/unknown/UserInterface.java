@@ -1,29 +1,9 @@
 package org.unknown;
 
-import java.util.Scanner;
-
 public class UserInterface {
-    private Scanner scanner;
-
-    public UserInterface() {
-        this.scanner = new Scanner(System.in);
-    }
 
     public void drawUI() {
-        boolean quit = false;
         printMenu();
-
-        while (!quit){
-            String userInput = getUserInput();
-            switch (userInput){
-                case "--quit":
-                    quit = true;
-
-                case "--clear":
-                    clearConsole();
-                    printMenu();
-            }
-        }
     }
 
     private void printMenu() {
@@ -41,12 +21,5 @@ public class UserInterface {
         System.out.println("|                                                    |");
         System.out.println("+----------------------------------------------------+");
         System.out.println();
-    }
-    public String getUserInput() {
-        return scanner.nextLine();
-    }
-
-    public void clearConsole(){
-        System.out.print("\033\143");
     }
 }
