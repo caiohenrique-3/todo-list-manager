@@ -72,6 +72,10 @@ public class CommandProcessor {
     private void printPendingTasks(){
         taskManager.showPending();
     }
+    
+    private void printCompleteTasks(){
+        taskManager.showComplete();
+    }
 
     private int extractTaskId(String command) {
         // Use regex to match and extract the numeric part of the command
@@ -120,6 +124,8 @@ public class CommandProcessor {
                 case "--l":
                     if ("pending".equals(argument)){
                         printPendingTasks();
+                    } else if ("done".equals(argument)) {
+                       printCompleteTasks();
                     } else {
                         printAllTasks();
                     }

@@ -68,6 +68,33 @@ public class TaskManager {
         }
     }
 
+    public void showComplete(){
+        int totalTasks = 0;
+        for (Task task : tasks) {
+            if (task.completionStatus == CompletionStatus.COMPLETED){
+                totalTasks++;
+            }
+        }
+
+        System.out.println("\n+------------------------------------------+");
+        System.out.println("|                                          |");
+        System.out.println("|  \uD83D\uDCDA Total number of completed tasks: " + totalTasks
+                + "   |");
+        System.out.println("|                                          |");
+        System.out.println("+------------------------------------------+\n");
+
+        for (Task task : tasks) {
+            if (task.completionStatus == CompletionStatus.COMPLETED) {
+                System.out.println("\uD83D\uDCD1 ID: " + task.taskID);
+                System.out.println("\uD83D\uDCDD Name: " + task.taskName);
+                System.out.println("\uD83D\uDCDA Description: " + task.description);
+                System.out.println("\u23F0 Deadline: " + task.deadline);
+                System.out.println("\uD83D\uDD22 Status: " + task.completionStatus);
+                System.out.println("-------------------------------------\n");
+            }
+        }
+    }
+
     public void completeTask(int taskID){
         boolean taskFound = false;
         for (Task task : tasks) {
