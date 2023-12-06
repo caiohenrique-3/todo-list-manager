@@ -34,26 +34,25 @@ public class CommandProcessor {
     }
 
     private void addNewTask(){
-        System.out.println("Name:");
+        System.out.println("\n✨ Create a New Task ✨");
+        System.out.println("-----------------------");
+
+        System.out.print("📝 Task Name: ");
         String taskName = getUserInput();
 
-        System.out.println("Description:");
+        System.out.print("📚 Description: ");
         String description = getUserInput();
 
-
-        System.out.println("Deadline:");
+        System.out.print("⏰ Deadline: ");
         String deadline = getUserInput();
 
-        System.out.println("Choose a number:" +
-                "(1) In progress | (2) Not completed");
-
+        System.out.println("[(1) In progress 🔄 | (2) Not completed ❌] 🔢 Choose a number: ");
         int completionStatus = getUserInt();
 
-        Task newTask = new Task(taskName, description,
-                deadline, completionStatus);
+        Task newTask = new Task(taskName, description, deadline, completionStatus);
         taskManager.addTask(newTask);
 
-        System.out.println("New task successfully created!");
+        System.out.println("✅ New task successfully created!\n");
     }
 
     private void printAllTasks(){

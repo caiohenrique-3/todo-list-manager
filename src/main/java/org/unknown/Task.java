@@ -19,6 +19,6 @@ public class Task {
         this.taskName = taskName;
         this.description = description;
         this.deadline = deadline;
-        this.completionStatus= completionStatus;
+        this.completionStatus = completionStatus;
     }
 }
