@@ -22,15 +22,15 @@ public class TaskManager {
     }
 
     public void showAll(){
-        System.out.println("\n📚 Total number of tasks: " + tasks.size());
+        System.out.println("\n\uD83D\uDCDA Total number of tasks: " + tasks.size());
         System.out.println("-----------------------\n");
 
         for (Task task : tasks) {
-            System.out.println("🔖 Task ID: " + task.taskID);
-            System.out.println("📝 Task Name: " + task.taskName);
-            System.out.println("📚 Task Description: " + task.description);
-            System.out.println("⏰ Task Deadline: " + task.deadline);
-            System.out.println("🔢 Task Completion Status: " + task.completionStatus);
+            System.out.println("\uD83D\uDCD1 Task ID: " + task.taskID);
+            System.out.println("\uD83D\uDCDD Task Name: " + task.taskName);
+            System.out.println("\uD83D\uDCDA Task Description: " + task.description);
+            System.out.println("\u23F0 Task Deadline: " + task.deadline);
+            System.out.println("\uD83D\uDD22 Task Completion Status: " + task.completionStatus);
             System.out.println("-----------------------\n");
         }
     }

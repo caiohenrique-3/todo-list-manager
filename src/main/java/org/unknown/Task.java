@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 // and completion status.
 
 enum CompletionStatus {
-    IN_PROGRESS("In progress 🔄"),
-    NOT_COMPLETED("Not completed ❌");
+    IN_PROGRESS("In progress \uD83D\uDD04"),
+    NOT_COMPLETED("Not completed \u274C");
     private final String display;
 
     CompletionStatus(String display){
