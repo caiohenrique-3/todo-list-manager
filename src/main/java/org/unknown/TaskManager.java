@@ -67,4 +67,21 @@ public class TaskManager {
             }
         }
     }
+
+    public void completeTask(int taskID){
+        boolean taskFound = false;
+        for (Task task : tasks) {
+           if (task.taskID == taskID){
+               task.completionStatus = CompletionStatus.COMPLETED;
+               System.out.println("\n\u2713 Successfully completed task id: " +
+                       taskID + "\n");
+               taskFound = true;
+               break;
+           }
+        }
+
+        if (!taskFound){
+            System.out.println("\n[!] Could not find task id: " + taskID);
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package org.unknown;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Scanner;
 
 // Handle the processing of user commands
@@ -71,12 +73,34 @@ public class CommandProcessor {
         taskManager.showPending();
     }
 
+    private int extractTaskId(String command) {
+        // Use regex to match and extract the numeric part of the command
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(command);
+
+        // Find the first occurrence of a numeric sequence in the command
+        if (matcher.find()) {
+            // Return the matched numeric part as an integer
+            return Integer.parseInt(matcher.group());
+        } else {
+            // Handle the case where no numeric part is found (return an appropriate default or throw an exception)
+            throw new IllegalArgumentException("Invalid command format");
+        }
+    }
+
+    private void updateTaskStatus(int taskId) {
+        taskManager.completeTask(taskId);
+    }
+
     public void processCommands(){
         boolean quit = false;
         while (!quit){
             String userInput = getUserInput();
+            String[] parts = userInput.split(" ", 2);
+            String command = parts[0];
+            String argument = parts.length > 1 ? parts[1] : null;
 
-            switch (userInput){
+            switch (command){
                 case "--quit":
                 case "--q":
                     quit = true;
@@ -93,14 +117,20 @@ public class CommandProcessor {
                    break;
 
                 case "--list":
-                case "--list all":
                 case "--l":
-                case "--l all":
-                    printAllTasks();
+                    if ("pending".equals(argument)){
+                        printPendingTasks();
+                    } else {
+                        printAllTasks();
+                    }
                     break;
-                case "--list pending":
-                case "--l pending":
-                    printPendingTasks();
+
+                case "--done":
+                case "--d":
+                    if (argument != null){
+                        int taskId = extractTaskId(userInput);
+                        updateTaskStatus(taskId);
+                    }
                     break;
             }
         }
