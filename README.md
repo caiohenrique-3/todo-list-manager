@@ -9,3 +9,9 @@ A todo list manager for your terminal
 ## Preview
 
 ![Screenshot1](showcase.png)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
