@@ -15,8 +15,12 @@ public class TaskManager {
     private FileManager fileManager;
 
     public TaskManager(FileManager fileManager){
-        this.tasks = new ArrayList<>();
         this.fileManager = fileManager;
+        if (fileManager.checkIfFileExists()){
+            this.tasks = fileManager.readFromFile();
+        } else {
+            this.tasks = new ArrayList<>();
+        }
     }
 
     public void addTask(Task task){
