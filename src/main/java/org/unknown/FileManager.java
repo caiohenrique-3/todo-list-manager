@@ -8,12 +8,12 @@ import java.io.FileReader;
 public class FileManager {
     private String filename = "saved.txt";
 
-    public boolean checkIfFileExists(){
+    public boolean checkIfFileExists() {
         File f = new File(filename);
         return (f.exists() && !f.isDirectory());
     }
 
-    public List<Task> readFromFile(){
+    public List<Task> readFromFile() {
         List<Task> tasks = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(
@@ -43,7 +43,7 @@ public class FileManager {
         return tasks;
     }
 
-    public void writeToFile(Task task){
+    public void writeToFile(Task task) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             writer.write("Task ID: " + task.taskID + "\n");
@@ -52,6 +52,23 @@ public class FileManager {
             writer.write("Deadline: " + task.deadline + "\n");
             writer.write("Completion Status: " + task.completionStatus.
                     name() + "\n\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeAllToFile(List<Task> tasks) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false)); // overwrite the file
+            for (Task task : tasks) {
+                writer.write("Task ID: " + task.taskID + "\n");
+                writer.write("Task Name: " + task.taskName + "\n");
+                writer.write("Description: " + task.description + "\n");
+                writer.write("Deadline: " + task.deadline + "\n");
+                writer.write("Completion Status: " + task.completionStatus.name() + "\n\n");
+            }
             writer.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");

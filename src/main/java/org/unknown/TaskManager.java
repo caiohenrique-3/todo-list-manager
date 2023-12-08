@@ -14,21 +14,24 @@ public class TaskManager {
     private List<Task> tasks;
     private FileManager fileManager;
 
-    public TaskManager(FileManager fileManager){
+    public TaskManager(FileManager fileManager) {
         this.fileManager = fileManager;
-        if (fileManager.checkIfFileExists()){
+        if (fileManager.checkIfFileExists()) {
             this.tasks = fileManager.readFromFile();
+            if (!tasks.isEmpty())
+                System.out.println("\n[\u2713] Successfully loaded " +
+                        "tasks from last session.\n");
         } else {
             this.tasks = new ArrayList<>();
         }
     }
 
-    public void addTask(Task task){
+    public void addTask(Task task) {
         tasks.add(task);
         fileManager.writeToFile(task);
     }
 
-    public void showAll(){
+    public void showAll() {
         System.out.println("\n+-------------------------------------+");
         System.out.println("|                                     |");
         System.out.println("|  \uD83D\uDCDA Total number of tasks: " + tasks.size()
@@ -46,13 +49,13 @@ public class TaskManager {
         }
     }
 
-    public void showPending(){
+    public void showPending() {
         int totalTasks = 0;
         for (Task task : tasks) {
-           if (task.completionStatus == CompletionStatus.IN_PROGRESS
-                   || task.completionStatus == CompletionStatus.NOT_COMPLETED){
-              totalTasks++;
-           }
+            if (task.completionStatus == CompletionStatus.IN_PROGRESS
+                    || task.completionStatus == CompletionStatus.NOT_COMPLETED) {
+                totalTasks++;
+            }
         }
 
         System.out.println("\n+------------------------------------------+");
@@ -65,20 +68,20 @@ public class TaskManager {
         for (Task task : tasks) {
             if (task.completionStatus == CompletionStatus.IN_PROGRESS
                     || task.completionStatus == CompletionStatus.NOT_COMPLETED) {
-            System.out.println("\uD83D\uDCD1 ID: " + task.taskID);
-            System.out.println("\uD83D\uDCDD Name: " + task.taskName);
-            System.out.println("\uD83D\uDCDA Description: " + task.description);
-            System.out.println("\u23F0 Deadline: " + task.deadline);
-            System.out.println("\uD83D\uDD22 Status: " + task.completionStatus);
-            System.out.println("-------------------------------------\n");
+                System.out.println("\uD83D\uDCD1 ID: " + task.taskID);
+                System.out.println("\uD83D\uDCDD Name: " + task.taskName);
+                System.out.println("\uD83D\uDCDA Description: " + task.description);
+                System.out.println("\u23F0 Deadline: " + task.deadline);
+                System.out.println("\uD83D\uDD22 Status: " + task.completionStatus);
+                System.out.println("-------------------------------------\n");
             }
         }
     }
 
-    public void showComplete(){
+    public void showComplete() {
         int totalTasks = 0;
         for (Task task : tasks) {
-            if (task.completionStatus == CompletionStatus.COMPLETED){
+            if (task.completionStatus == CompletionStatus.COMPLETED) {
                 totalTasks++;
             }
         }
@@ -102,27 +105,29 @@ public class TaskManager {
         }
     }
 
-    public void completeTask(int taskID){
+    public void completeTask(int taskID) {
         boolean taskFound = false;
         for (Task task : tasks) {
-           if (task.taskID == taskID){
-               task.completionStatus = CompletionStatus.COMPLETED;
-               System.out.println("\n\u2713 Successfully completed task id: " +
-                       taskID + "\n");
-               taskFound = true;
-               break;
-           }
+            if (task.taskID == taskID) {
+                task.completionStatus = CompletionStatus.COMPLETED;
+                System.out.println("\n\u2713 Successfully completed task id: " +
+                        taskID + "\n");
+                taskFound = true;
+                break;
+            }
         }
 
-        if (!taskFound){
+        if (taskFound) {
+            fileManager.writeAllToFile(tasks);
+        } else {
             System.out.println("\n[!] Could not find task id: " + taskID);
         }
     }
 
-    public void deleteTask(int taskID){
+    public void deleteTask(int taskID) {
         boolean taskFound = false;
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).taskID == taskID){
+            if (tasks.get(i).taskID == taskID) {
                 tasks.remove(i);
                 System.out.println("\n\u274C Successfully deleted task id: " +
                         taskID + "\n");
@@ -131,7 +136,9 @@ public class TaskManager {
             }
         }
 
-        if (!taskFound){
+        if (taskFound) {
+            fileManager.writeAllToFile(tasks);
+        } else {
             System.out.println("\n[!] Could not find task id: " + taskID);
         }
     }
