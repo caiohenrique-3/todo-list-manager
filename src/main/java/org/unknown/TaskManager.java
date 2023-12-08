@@ -111,4 +111,21 @@ public class TaskManager {
             System.out.println("\n[!] Could not find task id: " + taskID);
         }
     }
+
+    public void deleteTask(int taskID){
+        boolean taskFound = false;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).taskID == taskID){
+                tasks.remove(i);
+                System.out.println("\n\u274C Successfully deleted task id: " +
+                        taskID + "\n");
+                taskFound = true;
+                break;
+            }
+        }
+
+        if (!taskFound){
+            System.out.println("\n[!] Could not find task id: " + taskID);
+        }
+    }
 }

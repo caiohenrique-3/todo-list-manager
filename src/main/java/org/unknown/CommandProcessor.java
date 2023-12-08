@@ -62,7 +62,7 @@ public class CommandProcessor {
         Task newTask = new Task(taskName, description, deadline, completionStatus);
         taskManager.addTask(newTask);
 
-        System.out.println("\u2705 New task successfully created!\n");
+        System.out.println("\n\u2705 New task successfully created!\n");
     }
 
     private void printAllTasks(){
@@ -94,6 +94,10 @@ public class CommandProcessor {
 
     private void updateTaskStatus(int taskId) {
         taskManager.completeTask(taskId);
+    }
+
+    private void deleteTask(int taskId){
+        taskManager.deleteTask(taskId);
     }
 
     public void processCommands(){
@@ -136,6 +140,14 @@ public class CommandProcessor {
                     if (argument != null){
                         int taskId = extractTaskId(userInput);
                         updateTaskStatus(taskId);
+                    }
+                    break;
+
+                case "--trash":
+                case "--t":
+                    if (argument != null){
+                        int taskId = extractTaskId(userInput);
+                        deleteTask(taskId);
                     }
                     break;
             }
