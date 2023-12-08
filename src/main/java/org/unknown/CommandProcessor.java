@@ -62,7 +62,7 @@ public class CommandProcessor {
         Task newTask = new Task(taskName, description, deadline, completionStatus);
         taskManager.addTask(newTask);
 
-        System.out.println("\n\u2705 New task successfully created!\n");
+        System.out.println("\n[\u2705] New task successfully created!\n");
     }
 
     private void printAllTasks(){

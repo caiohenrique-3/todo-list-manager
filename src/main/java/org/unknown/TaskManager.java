@@ -110,7 +110,7 @@ public class TaskManager {
         for (Task task : tasks) {
             if (task.taskID == taskID) {
                 task.completionStatus = CompletionStatus.COMPLETED;
-                System.out.println("\n\u2713 Successfully completed task id: " +
+                System.out.println("\n[\u2713] Successfully completed task id: " +
                         taskID + "\n");
                 taskFound = true;
                 break;
@@ -120,7 +120,7 @@ public class TaskManager {
         if (taskFound) {
             fileManager.writeAllToFile(tasks);
         } else {
-            System.out.println("\n[!] Could not find task id: " + taskID);
+            System.out.println("\n[!] Could not find task id: " + taskID + '\n');
         }
     }
 
@@ -129,7 +129,7 @@ public class TaskManager {
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).taskID == taskID) {
                 tasks.remove(i);
-                System.out.println("\n\u274C Successfully deleted task id: " +
+                System.out.println("\n[\u274C] Successfully deleted task id: " +
                         taskID + "\n");
                 taskFound = true;
                 break;
@@ -139,7 +139,7 @@ public class TaskManager {
         if (taskFound) {
             fileManager.writeAllToFile(tasks);
         } else {
-            System.out.println("\n[!] Could not find task id: " + taskID);
+            System.out.println("\n[!] Could not find task id: " + taskID + '\n');
         }
     }
 }
