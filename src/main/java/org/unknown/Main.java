@@ -5,7 +5,8 @@ public class Main {
         UserInterface ui = new UserInterface();
         ui.drawUI();
         ui = null;
-        TaskManager tm = new TaskManager();
+        FileManager fm = new FileManager();
+        TaskManager tm = new TaskManager(fm);
         CommandProcessor cp = new CommandProcessor(tm);
         cp.processCommands();
     }

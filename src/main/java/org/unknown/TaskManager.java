@@ -12,13 +12,16 @@ import java.util.List;
 // from and writing to a text file.
 public class TaskManager {
     private List<Task> tasks;
+    private FileManager fileManager;
 
-    public TaskManager(){
+    public TaskManager(FileManager fileManager){
         this.tasks = new ArrayList<>();
+        this.fileManager = fileManager;
     }
 
     public void addTask(Task task){
         tasks.add(task);
+        fileManager.writeToFile(task);
     }
 
     public void showAll(){
