@@ -19,8 +19,8 @@ public class TaskManager {
         if (fileManager.checkIfFileExists()) {
             this.tasks = fileManager.readFromFile();
             if (!tasks.isEmpty())
-                System.out.println("\n[\u2713] Successfully loaded " +
-                        "tasks from last session.\n");
+                System.out.println("\n[\u2713] Successfully loaded "
+                        + tasks.size() + " tasks from last session.\n");
         } else {
             this.tasks = new ArrayList<>();
         }
