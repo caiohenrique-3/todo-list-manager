@@ -88,7 +88,8 @@ public class CommandProcessor {
             return Integer.parseInt(matcher.group());
         } else {
             // Handle the case where no numeric part is found (return an appropriate default or throw an exception)
-            throw new IllegalArgumentException("Invalid command format");
+            // throw new IllegalArgumentException("Invalid command format");
+            return -1;
         }
     }
 
@@ -139,7 +140,10 @@ public class CommandProcessor {
                 case "--d":
                     if (argument != null){
                         int taskId = extractTaskId(userInput);
-                        updateTaskStatus(taskId);
+                        if (taskId == -1)
+                            System.out.println("\n[!] Invalid command format\n");
+                        else
+                            updateTaskStatus(taskId);
                     }
                     break;
 
@@ -147,7 +151,10 @@ public class CommandProcessor {
                 case "--t":
                     if (argument != null){
                         int taskId = extractTaskId(userInput);
-                        deleteTask(taskId);
+                        if (taskId == -1)
+                            System.out.println("\n[!] Invalid command format\n");
+                        else
+                            deleteTask(taskId);
                     }
                     break;
             }
